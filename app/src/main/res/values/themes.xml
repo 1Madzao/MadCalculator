@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MadCalculator" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/glass_btn_equals</item>
+        <item name="android:windowBackground">@color/bg_deep_space</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:hapticFeedbackEnabled">false</item>
+    </style>
+
+    <style name="Theme.MadCalculator" parent="Base.Theme.MadCalculator" />
+    <style name="AppTheme" parent="Base.Theme.MadCalculator" />
+</resources>

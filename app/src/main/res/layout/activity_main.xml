@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_deep_space"
+    android:hapticFeedbackEnabled="false">
+
+    <com.madstudio.madcalculator.ParticleBackgroundView
+        android:id="@+id/particleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/mainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.06"
+                android:text="MadCalculator"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHistory"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="38dp"
+                android:paddingHorizontal="10dp"
+                android:text="🕒"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                app:backgroundTint="@color/glass_btn_scientific"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/glass_stroke_subtle"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAngleMode"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="56dp"
+                android:paddingHorizontal="12dp"
+                android:text="DEG"
+                android:textColor="@color/text_operator"
+                android:textSize="12sp"
+                app:backgroundTint="@color/glass_btn_scientific"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/glass_stroke_subtle"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToggleScientific"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingHorizontal="14dp"
+                android:text="Científica ▾"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                app:backgroundTint="@color/glass_btn_operator"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/glass_stroke_accent"
+                app:strokeWidth="1dp" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/displayCard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/glass_display_bg"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/glass_stroke_light"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|end"
+                android:orientation="vertical"
+                android:paddingHorizontal="22dp"
+                android:paddingVertical="18dp">
+
+                <HorizontalScrollView
+                    android:id="@+id/expressionScroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <TextView
+                        android:id="@+id/tvExpression"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="@color/text_secondary"
+                        android:textSize="24sp" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="46sp" />
+
+                <TextView
+                    android:id="@+id/tvPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/text_operator"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/keypadCard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.67"
+            app:cardBackgroundColor="@color/glass_keypad_bg"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/glass_stroke_subtle"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/scientificPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnSin" style="@style/MadButton.Scientific" android:text="sin" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnCos" style="@style/MadButton.Scientific" android:text="cos" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnTan" style="@style/MadButton.Scientific" android:text="tan" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnLn" style="@style/MadButton.Scientific" android:text="ln" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnLog" style="@style/MadButton.Scientific" android:text="log" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnOpenParen" style="@style/MadButton.Scientific" android:text="(" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnCloseParen" style="@style/MadButton.Scientific" android:text=")" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnSqrt" style="@style/MadButton.Scientific" android:text="√" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnPower" style="@style/MadButton.Scientific" android:text="xʸ" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnPi" style="@style/MadButton.Scientific" android:text="π" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnClear" style="@style/MadButton.Clear" android:text="AC" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnBackspace" style="@style/MadButton.Operator" android:text="⌫" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnPercent" style="@style/MadButton.Operator" android:text="%" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnDivide" style="@style/MadButton.Operator" android:text="÷" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" style="@style/MadButton.Number" android:text="7" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" style="@style/MadButton.Number" android:text="8" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" style="@style/MadButton.Number" android:text="9" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnMultiply" style="@style/MadButton.Operator" android:text="×" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" style="@style/MadButton.Number" android:text="4" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" style="@style/MadButton.Number" android:text="5" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" style="@style/MadButton.Number" android:text="6" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnSubtract" style="@style/MadButton.Operator" android:text="−" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" style="@style/MadButton.Number" android:text="1" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" style="@style/MadButton.Number" android:text="2" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" style="@style/MadButton.Number" android:text="3" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnAdd" style="@style/MadButton.Operator" android:text="+" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn00" style="@style/MadButton.Number" android:text="00" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" style="@style/MadButton.Number" android:text="0" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnDot" style="@style/MadButton.Number" android:text="," />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/btnEquals" style="@style/MadButton.Equals" android:text="=" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</FrameLayout>
